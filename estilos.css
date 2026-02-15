@@ -36,7 +36,7 @@ El esquema de diseño es el siguiente:
     /* este gap es el espacio entre los items dentro del grupo, no afecta al espacio entre grupos */
       width: min-content;
     /* "width: min-content" hace que el ancho del grupo se ajuste al contenido, es decir, a la cantidad de items que tenga, sin estirarse para llenar el espacio disponible. Esto es crucial para mantener el alineado correcto, especialmente en el grupo de la derecha, ya que si el grupo se estira, los items dentro de él también se estirarían y perderían su alineación a la derecha. */
-  margin-bottom: 1rem; 
+  margin-bottom: 0.5rem; 
   /* Espacio con la siguiente fila-flex, si hubiera más filas debajo */ 
 }
 
@@ -71,18 +71,18 @@ El esquema de diseño es el siguiente:
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: .5rem;
+  padding: 0.5rem;
   text-decoration: none;
   color: #444;
   background: #fff;
   border-radius: 1rem;
   transition: all 0.2s ease;
   border: 1px solid #aaa;
-  width: 140px;
-  height: 90px;
+  width: 8.5rem; /* antes: 140px */
+  height: 5.5rem; /* antes: 90px */
 }
 .item.largo{
-  width: 200px;
+  width: 12rem; /* antes: 200px */
 }
 
 .item:hover {
@@ -92,13 +92,13 @@ El esquema de diseño es el siguiente:
 }
 
 .item img {
-  height: 48px;
+  height: 3rem; /* 48px */
   object-fit: contain;
 }
 
 .item-container {
   width: 100%; /* Ocupa todo el ancho de la card */
-  height: 60px; /* Altura máxima permitida para el icono */
+  height: 3.25rem; /* antes: 60px - Altura máxima permitida para el icono */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,10 +115,10 @@ El esquema de diseño es el siguiente:
 }
 
 .texto-item {
-  font-size: .9 rem;
+  font-size: 0.8 rem;
   color: #555;
   text-align: center;
-  margin-top: -0.5rem;
+  margin-top: -1rem;
 }
 
 .borde-img {
