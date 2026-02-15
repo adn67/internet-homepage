@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: #f0f2f5;
+  margin: 20px;
+}
+
+/*
+El esquema de diseño es el siguiente:
+- Un contenedor principal (fila-flex) que es un flexbox con justify-content: space-between para separar dos grupos de items a los extremos.
+- Dentro de cada grupo, un grid (grid-grupo) con grid-template-columns: repeat(auto-fill, 140px) para mantener el tamaño de los items y permitir que se ajusten automáticamente.
+- El grupo de la derecha tiene una clase adicional (derecha) para alinear sus items a la derecha del contenedor fila-flex, usando justify-content: end y justify-items: end para asegurar que tanto el grupo como los items dentro del grupo se alineen a la derecha.
+*/
+
+/* La fila contenedora - para contener 2 subgrupos de items */
+/* display flex, para justificar los grupos a los extremos */
+.fila-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+/* Los grupos internos (bloques grid con items) */
+.grid-grupo {
+    display: grid;
+    grid-auto-flow: column;
+     /* "grid-auto-flow: column" hace que los items se coloquen en columnas, es decir, de izquierda a derecha, y luego pasen a la siguiente fila si no caben. Crea columnas automáticas que ocupan solo el espacio del item */
+     grid-auto-columns: auto;
+      /* "grid-auto-columns: 140px" establece un ancho fijo para cada columna, lo que asegura que los items mantengan su tamaño y no se estiren para llenar el espacio disponible. Modificar este valor afectará el tamaño de los items dentro del grupo, pero no el tamaño del grupo en sí, que se ajustará al contenido gracias a "width: min-content". El valor para el ancho estará basado en su contenido, para que no se estire y rompa el alineado. Modifiqué "140px" por "auto" */
+    gap: 15px;
+    /* este gap es el espacio entre los items dentro del grupo, no afecta al espacio entre grupos */
+      width: min-content;
+    /* "width: min-content" hace que el ancho del grupo se ajuste al contenido, es decir, a la cantidad de items que tenga, sin estirarse para llenar el espacio disponible. Esto es crucial para mantener el alineado correcto, especialmente en el grupo de la derecha, ya que si el grupo se estira, los items dentro de él también se estirarían y perderían su alineación a la derecha. */
+  margin-bottom: 10px; 
+  /* Espacio con la siguiente fila-flex, si hubiera más filas debajo */ 
+}
+
+/*Otra posibilidad:
+
+  .grid-grupo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 140px);
+      gap: 15px;
+      min-width: 140px;
+      flex: 1;
+  }
+
+*/
+
+/* Ajuste para que el grupo de la derecha se alinee a la derecha del contenedor fila-flex */
+.grid-grupo.derecha { 
+    justify-content: end;
+    /* "justify-content: end" sirve para alinear el contenido del grid a la derecha */
+    justify-items: end;
+    /* "justify-items: end" sirve para forzar el alineado de los items a la derecha */
+    /* "justify-items: end" es necesario porque "justify-content: end" alinea el grupo pero no los items dentro del grupo, que por defecto se alinean a la izquierda */
+}
+
+
+
+
+
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  text-decoration: none;
+  color: #444;
+  background: #fff;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  border: 1px solid #aaa;
+  width: 140px;
+  height: 90px;
+}
+.item.largo{
+  width: 200px;
+}
+
+.item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  border-color: #d1d1d1;
+}
+
+.item img {
+  height: 48px;
+  object-fit: contain;
+}
+
+.item-container {
+  width: 100%; /* Ocupa todo el ancho de la card */
+  height: 60px; /* Altura máxima permitida para el icono */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.item-container img {
+  max-width: 100%;
+  max-height: 100%;
+  /* 'contain' obliga a la imagen a ser lo más grande posible 
+       sin salirse de los límites y sin deformarse */
+  object-fit: contain;
+  
+}
+
+.texto-item {
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+  margin-top: -20px;
+}
+
+.borde-img {
+  /* x, y, desenfoque, color */
+  filter: drop-shadow(-1px 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+/* 
+sombra en contorno de una imagen png o svg (no afecta el fondo transparente, solo el contorno de la imagen):
+
+img {
+    filter: drop-shadow(0 5px 3px gray);
+}
+*/
