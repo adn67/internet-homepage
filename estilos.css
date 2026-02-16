@@ -12,8 +12,8 @@ body {
   /* Contenedor para cada fila */
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: 0.9rem;
+  margin-bottom: 1.25rem;
   width: 100%;
 }
 
